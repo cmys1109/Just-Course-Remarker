@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         Just课表获取
 // @namespace    https://github.com/cmys1109
-// @version      1.0.0
+// @version      1.0.1
 // @description  Just(江苏科技大学)方正教务系统课表获取.
 // @author       cmys1109
-// @license      MIT
+// @license      Apache License 2.0
 // @require      https://unpkg.com/jquery@3.6.3/dist/jquery.js
 // @match        *://jwxt.just.edu.cn/jwglxt/xtgl/index_initMenu.html*
 // @match        *://jwxt.just.edu.cn/jwglxt/kbcx/xskbcxZccx_cxXskbcxIndex.html*
+// @match        *://client.v.just.edu.cn/*/jwglxt/xtgl/index_initMenu.html*
+// @match        *://client.v.just.edu.cn/*/jwglxt/kbcx/xskbcxZccx_cxXskbcxIndex.html*
 // @grant        unsafeWindow
 // @grant        GM_setValue
 // @grant        GM_getValue
