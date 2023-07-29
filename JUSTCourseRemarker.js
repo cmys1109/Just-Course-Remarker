@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Just课表获取
 // @namespace    https://github.com/cmys1109
-// @version      1.0.2
+// @version      1.0.3
 // @description  Just(江苏科技大学)方正教务系统课表获取.
 // @author       cmys1109
 // @license      Apache License 2.0
@@ -232,17 +232,18 @@ function courseTableInit(){
 }
 
 function courseTablePageInit() {
-    UIInit()
-    setMenu()
-    if ($("i>span")[0] === undefined) {
-        courseTableInit()
-    }
-
     const START_DETAILS = getDetails()
 
     // 自动选中下一周
     if (GM_getValue("autoSelectNextWeek", false)) {
         START_DETAILS.weekSelect.options[START_DETAILS.weekSelectedIndex + 1].selected = true
+        searchResult()
+    }
+
+    UIInit()
+    setMenu()
+    if ($("i>span")[0] === undefined) {
+        courseTableInit()
     }
 
     // 添加功能按钮
