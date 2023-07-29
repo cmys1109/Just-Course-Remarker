@@ -246,6 +246,12 @@ function courseTablePageInit() {
         courseTableInit()
     }
 
+    UIInit()
+    setMenu()
+    if ($("i>span")[0] === undefined) {
+        courseTableInit()
+    }
+
     // 添加功能按钮
     const getButton = document.createElement("button");
     getButton.innerText = "获取课表"
