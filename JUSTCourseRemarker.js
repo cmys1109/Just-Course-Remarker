@@ -232,17 +232,17 @@ function courseTableInit(){
 }
 
 function courseTablePageInit() {
-    UIInit()
-    setMenu()
-    if ($("i>span")[0] === undefined) {
-        courseTableInit()
-    }
-
     const START_DETAILS = getDetails()
 
     // 自动选中下一周
     if (GM_getValue("autoSelectNextWeek", false)) {
         START_DETAILS.weekSelect.options[START_DETAILS.weekSelectedIndex + 1].selected = true
+    }
+
+    UIInit()
+    setMenu()
+    if ($("i>span")[0] === undefined) {
+        courseTableInit()
     }
 
     // 添加功能按钮
