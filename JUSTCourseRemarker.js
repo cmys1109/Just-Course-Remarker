@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Just课表获取
 // @namespace    https://github.com/cmys1109
-// @version      1.0.1
+// @version      1.0.2
 // @description  Just(江苏科技大学)方正教务系统课表获取.
 // @author       cmys1109
 // @license      Apache License 2.0
@@ -234,7 +234,9 @@ function courseTableInit(){
 function courseTablePageInit() {
     UIInit()
     setMenu()
-    courseTableInit()
+    if ($("i>span")[0] === undefined) {
+        courseTableInit()
+    }
 
     const START_DETAILS = getDetails()
 
@@ -261,6 +263,9 @@ function courseTablePageInit() {
         })
 
         const user = GM_getValue("nowUser");
+        if (user === undefined) {
+            alert("无法找到用户信息，请刷新教务系统首页后重新获取！")
+        }
         const schList = [getDetails().now, user.ID, user.Name, freeStr];
         handleCopyValue(schList.join("|"))
         alert("排班字符串已经复制到剪切板了！")
@@ -309,7 +314,7 @@ function initMenuPageInit() {
     userList.forEach(user => {
         if (user.ID === userID) {
             GM_setValue("nowUser", user)
-
+            return
         }
     })
 
@@ -344,10 +349,8 @@ function initMenuPageInit() {
                 $("#getRemarkButton").toggle()
             })
 
-            $("select").change(function(event) {
-                if (event.currentTarget.id !== "zs") {
-                    searchResult()
-                }
+            $("select").change(function() {
+                searchResult()
                 courseTableInit()
             })
         } else if (url.indexOf("index_initMenu") !== -1){
